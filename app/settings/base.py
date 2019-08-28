@@ -22,6 +22,7 @@ INSTALLED_APPS = (
     "django.contrib.sites",
     "django.contrib.admin",
     "rest_framework",
+    "suvorov_park.users",
 )
 
 MIDDLEWARE = [
@@ -99,6 +100,8 @@ ADMIN_URL = "admin/"
 
 LOCALE_PATHS = (str(CONFIG.APP_DIR.path("app", "locale")),)
 
+LOCALE = CONFIG.APP_DIR.path("app", "locale")
+
 AUTH_PASSWORD_VALIDATORS = ()
 
 TEMPLATES = [
@@ -145,3 +148,5 @@ LOGGING = {
         }
     },
 }
+
+AUTH_USER_MODEL = "users.User"
