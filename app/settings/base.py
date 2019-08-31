@@ -23,6 +23,7 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     "rest_framework",
     "suvorov_park.users",
+    "suvorov_park.common",
 )
 
 MIDDLEWARE = [
@@ -150,3 +151,5 @@ LOGGING = {
 }
 
 AUTH_USER_MODEL = "users.User"
+
+REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"}
