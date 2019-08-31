@@ -9,4 +9,5 @@ urlpatterns = [
     path("common/", include("suvorov_park.common.api.urls")),
 ]
 
+
 admin.site.site_header = _("Suvorov park Admin")

@@ -151,3 +151,5 @@ LOGGING = {
 }
 
 AUTH_USER_MODEL = "users.User"
+
+REST_FRAMEWORK = {"DEFAULT_SCHEMA_CLASS": "rest_framework.schemas.coreapi.AutoSchema"}
