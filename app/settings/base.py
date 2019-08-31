@@ -1,3 +1,5 @@
+from django.utils.translation import gettext_lazy as _
+
 CONFIG = __import__("app.config").config
 
 SECRET_KEY = CONFIG.env("SECRET_KEY")
@@ -21,9 +23,12 @@ INSTALLED_APPS = (
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "django.contrib.admin",
+    # third-party packages
     "rest_framework",
+    # project applications
     "suvorov_park.users",
     "suvorov_park.common",
+    "suvorov_park.polls",
 )
 
 MIDDLEWARE = [
@@ -60,7 +65,9 @@ DATABASES = {
 # Language
 #########################
 
-LANGUAGE_CODE = "ru-ru"
+LANGUAGES = (("en", _("English")), ("ru", _("Russian")))
+
+LANGUAGE_CODE = "ru-EN"
 
 TIME_ZONE = "Europe/Moscow"
 
@@ -100,8 +107,6 @@ ADMIN_URL = "admin/"
 #########################
 
 LOCALE_PATHS = (str(CONFIG.APP_DIR.path("app", "locale")),)
-
-LOCALE = CONFIG.APP_DIR.path("app", "locale")
 
 AUTH_PASSWORD_VALIDATORS = ()
 
