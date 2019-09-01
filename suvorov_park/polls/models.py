@@ -23,7 +23,7 @@ class Choice(models.Model):
         to="Poll",
         on_delete=models.CASCADE,
         verbose_name=_("poll"),
-        related_name="poll_answers",
+        related_name="choices",
     )
     title = models.CharField(max_length=255, verbose_name=_("title"))
     votes = models.IntegerField(default=0, verbose_name=_("votes"))
@@ -47,7 +47,7 @@ class UserChoice(models.Model):
         to="Poll", verbose_name=_("poll"), on_delete=models.CASCADE
     )
     choice = models.ForeignKey(
-        to="Choice", verbose_name=_("poll answer"), on_delete=models.CASCADE
+        to="Choice", verbose_name=_("choice"), on_delete=models.CASCADE
     )
 
     class Meta:
