@@ -23,7 +23,7 @@ class ChoiceAdmin(admin.ModelAdmin):
     list_select_related = ("poll",)
 
 
-@admin.register(models.UserChoice)
+@admin.register(models.Vote)
 class VoteAdmin(admin.ModelAdmin):
     list_display = ("user", "choice")
     list_select_related = ("user", "choice", "poll")

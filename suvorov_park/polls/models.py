@@ -39,7 +39,7 @@ class Choice(models.Model):
         return self.title
 
 
-class UserChoice(models.Model):
+class Vote(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, verbose_name=_("user"), on_delete=models.CASCADE
     )
@@ -53,6 +53,7 @@ class UserChoice(models.Model):
     class Meta:
         verbose_name = _("vote")
         verbose_name_plural = _("votes")
+        db_table = "polls_userchoice"
         constraints = (
             models.UniqueConstraint(fields=("poll", "user"), name="unique_vote"),
         )

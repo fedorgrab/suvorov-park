@@ -1,0 +1,2 @@
+class IncorrectPollChoice(Exception):
+    pass
