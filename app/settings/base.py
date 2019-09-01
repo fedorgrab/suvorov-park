@@ -25,6 +25,8 @@ INSTALLED_APPS = (
     "django.contrib.admin",
     # third-party packages
     "rest_framework",
+    "solo.apps.SoloAppConfig",
+    "corsheaders",
     # project applications
     "suvorov_park.users",
     "suvorov_park.common",
@@ -41,6 +43,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
 ]
 
 ROOT_URLCONF = "app.urls"
