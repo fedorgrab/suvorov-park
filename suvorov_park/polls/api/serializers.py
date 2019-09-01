@@ -1,7 +1,8 @@
+from django.db import IntegrityError
 from rest_framework import serializers
-from rest_framework.validators import UniqueTogetherValidator
 
 from suvorov_park.polls import models
+from suvorov_park.polls.exceptions import IncorrectPollChoice
 
 
 class ChoiceSerializer(serializers.ModelSerializer):
@@ -37,17 +38,21 @@ class VoteSerializer(serializers.ModelSerializer):
     choice = serializers.CharField(read_only=True)
 
     class Meta:
-        model = models.UserChoice
+        model = models.Vote
         fields = "__all__"
-        validators = [
-            UniqueTogetherValidator(
-                queryset=models.UserChoice.objects.all(), fields=("user", "poll")
-            )
-        ]
 
     def create(self, validated_data):
-        return models.UserChoice.objects.create(
-            user=validated_data["user"],
-            poll_id=validated_data["poll_id"],
-            choice_id=validated_data["choice_id"],
-        )
+        try:
+            return models.Vote.objects.create(
+                user=validated_data["user"],
+                poll_id=validated_data["poll_id"],
+                choice_id=validated_data["choice_id"],
+            )
+        except IncorrectPollChoice:
+            raise serializers.ValidationError(
+                {"detail": "Choice is inappropriate for current poll"}
+            )
+        except IntegrityError:
+            raise serializers.ValidationError(
+                {"detail": "Current poll have already been voted by user"}
+            )
