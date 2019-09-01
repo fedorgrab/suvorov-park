@@ -29,6 +29,7 @@ INSTALLED_APPS = (
     "suvorov_park.users",
     "suvorov_park.common",
     "suvorov_park.polls",
+    "suvorov_park.services",
 )
 
 MIDDLEWARE = [
