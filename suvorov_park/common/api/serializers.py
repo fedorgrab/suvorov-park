@@ -1,9 +1,9 @@
 from rest_framework import serializers
 
-from suvorov_park.common.models import News
+from suvorov_park.common import models
 
 
 class NewsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = News
+        model = models.News
         fields = ("id", "title", "text", "date")
