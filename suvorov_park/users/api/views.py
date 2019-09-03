@@ -24,7 +24,11 @@ class SignInAPIView(GenericAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.login(request=request, **serializer.validated_data)
-        return Response({"message": "success"})
+        response = Response({"message": "success"})
+        response["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, " \
+                                                   "Authorization, X-Requested-With, Access-Control-Expose-Headers"
+        response["Access-Control-Expose-Headers"] = "Set-Cookie, Access-Control-Expose-Headers, Access-Control-Allow-Headers"
+        return response
 
 
 class SignUpAPIView(GenericAPIView):
