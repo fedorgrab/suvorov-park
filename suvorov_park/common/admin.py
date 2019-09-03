@@ -9,11 +9,16 @@ class NewsAdmin(admin.ModelAdmin):
     list_display = ("title", "date")
 
 
-class MediaInline(admin.TabularInline):
-    model = models.SettingMedia
+class ImageInline(admin.TabularInline):
+    model = models.SettingImage
+    extra = 0
+
+
+class VideoInline(admin.TabularInline):
+    model = models.SettingVideo
     extra = 0
 
 
 @admin.register(models.SiteSetting)
 class SettingAdmin(SingletonModelAdmin):
-    inlines = (MediaInline,)
+    inlines = (ImageInline, VideoInline)
