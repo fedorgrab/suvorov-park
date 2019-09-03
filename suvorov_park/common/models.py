@@ -4,23 +4,41 @@ from solo.models import SingletonModel
 
 
 class SiteSetting(SingletonModel):
-    saved = models.BooleanField(
-        default=True
-    )  # this is a flag for index out of range   Error
     about = models.TextField(verbose_name=_("about"))
 
 
-class SettingMedia(models.Model):
+class SettingImage(models.Model):
     setting = models.ForeignKey(
-        to="SiteSetting", on_delete=models.CASCADE, verbose_name=_("setting")
+        to="SiteSetting",
+        on_delete=models.CASCADE,
+        verbose_name=_("setting"),
+        related_name="images",
     )
-    media_file = models.FileField()
+    image_file = models.ImageField(upload_to="common/images")
 
     def __str__(self):
-        return "медиа файл конфигурации сайта"
+        return self.image_file.url
 
     class Meta:
-        verbose_name = _("setting")
+        verbose_name = _("setting image")
+        verbose_name_plural = _("setting images")
+
+
+class SettingVideo(models.Model):
+    setting = models.ForeignKey(
+        to="SiteSetting",
+        on_delete=models.CASCADE,
+        verbose_name=_("settings"),
+        related_name="videos",
+    )
+    video_file = models.FileField(upload_to="common/videos")
+
+    class Meta:
+        verbose_name = _("setting video")
+        verbose_name_plural = _("setting videos")
+
+    def __str__(self):
+        return self.video_file.url
 
 
 class News(models.Model):
