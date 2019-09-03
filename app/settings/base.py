@@ -16,6 +16,7 @@ SITE_URL = ""
 #########################
 
 INSTALLED_APPS = (
+    # django package
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
@@ -32,6 +33,7 @@ INSTALLED_APPS = (
     "suvorov_park.common",
     "suvorov_park.polls",
     "suvorov_park.services",
+    "suvorov_park.forum",
 )
 
 MIDDLEWARE = [
@@ -168,7 +170,6 @@ REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "app.authentication.CsrfExemptSessionAuthentication",
     ),
-    "DEFAULT_PARSER_CLASSES": ["rest_framework.parsers.JSONParser"],
 }
 
 CORS_ORIGIN_ALLOW_ALL = True

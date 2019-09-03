@@ -9,6 +9,7 @@ urlpatterns = [
     path("common/", include("suvorov_park.common.api.urls")),
     path("polls/", include("suvorov_park.polls.api.urls")),
     path("services/", include("suvorov_park.services.api.urls")),
+    path("forum/", include("suvorov_park.forum.api.urls")),
 ]
 
 admin.site.site_header = _("Suvorov park Admin")
