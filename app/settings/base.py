@@ -72,9 +72,7 @@ DATABASES = {
 # Language
 #########################
 
-LANGUAGES = (("en", _("English")), ("ru", _("Russian")))
-
-LANGUAGE_CODE = "ru-EN"
+LANGUAGE_CODE = "ru-ru"
 
 TIME_ZONE = "Europe/Moscow"
 

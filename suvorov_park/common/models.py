@@ -6,6 +6,10 @@ from solo.models import SingletonModel
 class SiteSetting(SingletonModel):
     about = models.TextField(verbose_name=_("about"))
 
+    class Meta:
+        verbose_name = _("Site setting")
+        verbose_name_plural = _("Site settings")
+
 
 class SettingImage(models.Model):
     setting = models.ForeignKey(
