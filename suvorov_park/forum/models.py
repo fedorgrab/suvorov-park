@@ -20,6 +20,9 @@ class ForumTopic(models.Model):
         verbose_name = _("forum topic")
         verbose_name_plural = _("forum topics")
 
+    def __str__(self):
+        return self.title[:50]
+
 
 class ForumMessage(models.Model):
     text = models.CharField(max_length=255, verbose_name=_("text"))

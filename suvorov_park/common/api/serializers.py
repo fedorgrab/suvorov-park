@@ -9,9 +9,25 @@ class NewsSerializer(serializers.ModelSerializer):
         fields = ("id", "title", "text", "date")
 
 
+class ImageSettingSerializer(serializers.ModelSerializer):
+    url = serializers.URLField(source="image_file.url")
+
+    class Meta:
+        model = models.SettingImage
+        fields = ("url",)
+
+
+class VideoSettingSerializer(serializers.ModelSerializer):
+    url = serializers.URLField(source="vide_file.url")
+
+    class Meta:
+        model = models.SettingVideo
+        fields = ("url",)
+
+
 class SiteSettingSerializer(serializers.ModelSerializer):
-    videos = serializers.StringRelatedField(many=True)
-    images = serializers.StringRelatedField(many=True)
+    images = ImageSettingSerializer(many=True)
+    videos = VideoSettingSerializer(many=True)
 
     class Meta:
         model = models.SiteSetting

@@ -1,5 +1,3 @@
-from django.utils.translation import gettext_lazy as _
-
 CONFIG = __import__("app.config").config
 
 SECRET_KEY = CONFIG.env("SECRET_KEY")
@@ -23,6 +21,7 @@ INSTALLED_APPS = (
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "suvorov_park.apps.SuvorovParkConfig",
     "django.contrib.admin",
     # third-party packages
     "rest_framework",

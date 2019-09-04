@@ -7,6 +7,8 @@ from . import models
 @admin.register(models.News)
 class NewsAdmin(admin.ModelAdmin):
     list_display = ("title", "date")
+    list_filter = ("date",)
+    search_fields = ("title", "text")
 
 
 class ImageInline(admin.TabularInline):

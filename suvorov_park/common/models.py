@@ -18,10 +18,12 @@ class SettingImage(models.Model):
         verbose_name=_("setting"),
         related_name="images",
     )
-    image_file = models.ImageField(upload_to="common/images")
+    image_file = models.ImageField(
+        upload_to="common/images", verbose_name=_("image file")
+    )
 
     def __str__(self):
-        return self.image_file.url
+        return ""
 
     class Meta:
         verbose_name = _("setting image")
@@ -35,19 +37,21 @@ class SettingVideo(models.Model):
         verbose_name=_("settings"),
         related_name="videos",
     )
-    video_file = models.FileField(upload_to="common/videos")
+    video_file = models.FileField(
+        upload_to="common/videos", verbose_name=_("video file")
+    )
 
     class Meta:
         verbose_name = _("setting video")
         verbose_name_plural = _("setting videos")
 
     def __str__(self):
-        return self.video_file.url
+        return ""
 
 
 class News(models.Model):
     title = models.CharField(max_length=510, verbose_name=_("title"))
-    text = models.CharField(max_length=1020, verbose_name=_("text"))
+    text = models.TextField(max_length=1020, verbose_name=_("text"))
     date = models.DateField(verbose_name=_("date"))
 
     class Meta:
