@@ -5,9 +5,9 @@ from . import models
 
 class ChoiceInline(admin.TabularInline):
     model = models.Choice
-    can_delete = False
+    can_delete = True
     extra = 0
-    readonly_fields = ("title", "votes")
+    readonly_fields = ("votes",)
 
 
 @admin.register(models.Poll)
