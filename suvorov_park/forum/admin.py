@@ -12,9 +12,12 @@ class ForumTopicAdmin(admin.ModelAdmin):
         "created_at",
         "author",
     )
+    list_filter = ("created_at", "author")
+    search_fields = ("title", "author")
 
 
 @admin.register(models.ForumMessage)
 class ForumMessageAdmin(admin.ModelAdmin):
     list_display = ("user", "text", "forum_topic")
     list_select_related = ("forum_topic",)
+    search_fields = ("text", "forum_topic")

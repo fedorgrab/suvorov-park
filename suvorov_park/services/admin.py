@@ -12,3 +12,5 @@ class ServiceAdmin(admin.ModelAdmin):
 class ServiceOrderAdmin(admin.ModelAdmin):
     list_display = ("user", "service", "details", "created_at")
     list_select_related = ("user", "service")
+    list_filter = ("service", "created_at")
+    search_fields = ("details", "user")

@@ -15,6 +15,8 @@ class PollAdmin(admin.ModelAdmin):
     list_display = ("owner", "title", "created_at")
     inlines = (ChoiceInline,)
     list_select_related = ("owner",)
+    list_filter = ("created_at",)
+    search_fields = ("title",)
 
 
 @admin.register(models.Choice)
