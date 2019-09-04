@@ -15,7 +15,7 @@ class Poll(models.Model):
         verbose_name_plural = _("polls")
 
     def __str__(self):
-        return self.title
+        return f"{self.title[:20]}..."
 
 
 class Choice(models.Model):
