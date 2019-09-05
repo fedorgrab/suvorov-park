@@ -4,19 +4,17 @@ from suvorov_park.forum import models
 
 
 class ForumMessageSerializer(serializers.ModelSerializer):
-    forum_topic = serializers.PrimaryKeyRelatedField(
-        queryset=models.ForumTopic.objects.all()
-    )
+    user = serializers.StringRelatedField()
 
     class Meta:
         model = models.ForumMessage
-        fields = ("text", "forum_topic")
+        fields = ("text", "user")
 
     def create(self, validated_data):
         return models.ForumMessage.objects.create(
             user=validated_data["user"],
             text=validated_data["text"],
-            forum_topic=validated_data["forum_topic"],
+            forum_topic_id=validated_data["forum_topic_id"],
         )
 
 

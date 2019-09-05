@@ -12,9 +12,9 @@ class ServiceListAPIView(ListAPIView):
 
 
 class ServiceOrderAPIView(CreateAPIView):
+    service_id_url_kwarg = "service_id"
     serializer_class = serializers.ServiceOrderSerializer
     permission_classes = (IsAuthenticated,)
-    service_id_url_kwarg = "service_id"
 
     def perform_create(self, serializer):
         service_id = self.kwargs[self.service_id_url_kwarg]

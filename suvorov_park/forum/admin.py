@@ -13,6 +13,7 @@ class ForumTopicAdmin(admin.ModelAdmin):
         "author",
     )
     list_filter = ("created_at", "author")
+    readonly_fields = ("number_of_messages", "number_of_members")
     search_fields = ("title", "author")
 
 
