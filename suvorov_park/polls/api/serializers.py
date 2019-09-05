@@ -7,10 +7,11 @@ from suvorov_park.polls.exceptions import IncorrectPollChoice
 
 class ChoiceSerializer(serializers.ModelSerializer):
     votes = serializers.CharField(read_only=True)
+    option = serializers.CharField(source="title")
 
     class Meta:
         model = models.Choice
-        fields = ("id", "title", "votes")
+        fields = ("id", "option", "votes")
 
 
 class PollSerializer(serializers.ModelSerializer):
@@ -33,13 +34,9 @@ class PollSerializer(serializers.ModelSerializer):
 
 
 class VoteSerializer(serializers.ModelSerializer):
-    user = serializers.CharField(read_only=True)
-    poll = serializers.CharField(read_only=True)
-    choice = serializers.CharField(read_only=True)
-
     class Meta:
         model = models.Vote
-        fields = "__all__"
+        fields = ()
 
     def create(self, validated_data):
         try:
