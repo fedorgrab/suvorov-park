@@ -18,10 +18,11 @@ class PollSerializer(serializers.ModelSerializer):
     title = serializers.CharField(help_text="string")
     choices = ChoiceSerializer(many=True, help_text='[{"title": string}]')
     owner = serializers.CharField(read_only=True)
+    user_voted_for = serializers.IntegerField(read_only=True)
 
     class Meta:
         model = models.Poll
-        fields = ("id", "owner", "title", "created_at", "choices")
+        fields = ("id", "owner", "title", "created_at", "choices", "user_voted_for")
 
     def create(self, validated_data):
         choice_titles = map(lambda x: x["title"], validated_data["choices"])
