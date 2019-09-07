@@ -32,3 +32,9 @@ class ForumTopicSerializer(serializers.ModelSerializer):
         return models.ForumTopic.objects.create(
             title=validated_data["title"], author=validated_data["user"]
         )
+
+
+class ForumTopicShortSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = models.ForumTopic
+        fields = ("id", "title")

@@ -1,3 +1,4 @@
+from django.db.models import OuterRef, Subquery
 from rest_framework.generics import GenericAPIView, ListCreateAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
@@ -7,11 +8,16 @@ from . import serializers
 
 
 class PollListCreateAPIView(ListCreateAPIView):
-    queryset = (
-        models.Poll.objects.all().prefetch_related("choices").select_related("owner")
-    )
     serializer_class = serializers.PollSerializer
     permission_classes = (IsAuthenticated,)
+
+    def get_queryset(self):
+        user_votes = models.Vote.objects.filter(
+            user=self.request.user, poll_id=OuterRef("id")
+        )
+        return models.Poll.objects.annotate(
+            user_voted_for=Subquery(user_votes.values("choice_id")[:1])
+        )
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)

@@ -44,10 +44,16 @@ class Vote(models.Model):
         to=settings.AUTH_USER_MODEL, verbose_name=_("user"), on_delete=models.CASCADE
     )
     poll = models.ForeignKey(
-        to="Poll", verbose_name=_("poll"), on_delete=models.CASCADE
+        to="Poll",
+        verbose_name=_("poll"),
+        on_delete=models.CASCADE,
+        related_name="user_votes",
     )
     choice = models.ForeignKey(
-        to="Choice", verbose_name=_("choice"), on_delete=models.CASCADE
+        to="Choice",
+        verbose_name=_("choice"),
+        on_delete=models.CASCADE,
+        related_name="user_votes",
     )
 
     class Meta:
