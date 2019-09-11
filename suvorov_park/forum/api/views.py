@@ -1,4 +1,5 @@
-from rest_framework.generics import CreateAPIView, ListCreateAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView
+from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.permissions import IsAuthenticated
 
 from suvorov_park.forum import models
@@ -16,6 +17,12 @@ class ForumTopicsListCreateAPIView(ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
+
+
+class ForumShortListAPIView(ListAPIView):
+    serializer_class = serializers.ForumTopicShortSerializer
+    queryset = models.ForumTopic.objects.all().order_by("-id")
+    pagination_class = LimitOffsetPagination
 
 
 class ForumMessageCreateAPIView(CreateAPIView):
