@@ -17,7 +17,7 @@ class PollListCreateAPIView(ListCreateAPIView):
         )
         return models.Poll.objects.annotate(
             user_voted_for=Subquery(user_votes.values("choice_id")[:1])
-        )
+        ).order_by("-created_at")
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
