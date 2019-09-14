@@ -24,3 +24,9 @@ class VideoInline(admin.TabularInline):
 @admin.register(models.SiteSetting)
 class SettingAdmin(SingletonModelAdmin):
     inlines = (ImageInline, VideoInline)
+
+
+@admin.register(models.Feedback)
+class FeedbackAdmin(admin.ModelAdmin):
+    list_select_related = ("user",)
+    list_display = ("user", "email", "name", "created_at")

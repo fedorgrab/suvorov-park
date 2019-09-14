@@ -9,6 +9,25 @@ class NewsSerializer(serializers.ModelSerializer):
         fields = ("id", "title", "text", "date")
 
 
+class FeedbackSerializer(serializers.ModelSerializer):
+    user = serializers.PrimaryKeyRelatedField(read_only=True)
+    email = serializers.EmailField(allow_null=True, required=False)
+
+    class Meta:
+        model = models.Feedback
+        fields = ("name", "email", "user", "text")
+
+    def create(self, validated_data):
+        email, user = validated_data.get("email"), validated_data.get("user")
+
+        if not (email or user):
+            raise serializers.ValidationError(
+                {"detail": "Either email or credentials should be provided"}
+            )
+
+        return models.Feedback.objects.create(**validated_data)
+
+
 class ImageSettingSerializer(serializers.ModelSerializer):
     url = serializers.URLField(source="image_file.url")
 

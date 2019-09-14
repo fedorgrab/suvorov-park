@@ -1,4 +1,5 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from django.contrib.auth.models import AnonymousUser
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 
 from suvorov_park.common import models
@@ -16,3 +17,13 @@ class SettingAPIView(RetrieveAPIView):
 
     def get_object(self):
         return models.SiteSetting.objects.get()
+
+
+class FeedbackCreateAPIView(CreateAPIView):
+    serializer_class = serializers.FeedbackSerializer
+
+    def perform_create(self, serializer):
+        if not isinstance(self.request.user, AnonymousUser):
+            serializer.save(user=self.request.user)
+
+        super().perform_create(serializer)

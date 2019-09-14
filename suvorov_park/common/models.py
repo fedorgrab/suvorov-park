@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from solo.models import SingletonModel
@@ -57,3 +58,23 @@ class News(models.Model):
     class Meta:
         verbose_name = _("News")
         verbose_name_plural = _("News")
+
+
+class Feedback(models.Model):
+    name = models.CharField(verbose_name=_("name"), max_length=255)
+    email = models.EmailField(
+        verbose_name=_("email"), max_length=255, null=True, blank=True
+    )
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        verbose_name=_("user"),
+        null=True,
+        blank=True,
+    )
+    text = models.CharField(max_length=1020, verbose_name=_("text"))
+    created_at = models.DateField(verbose_name=_("created_at"), auto_now_add=True)
+
+    class Meta:
+        verbose_name = _("Feedback")
+        verbose_name_plural = _("Feedback")

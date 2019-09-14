@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-05 00:12+0300\n"
+"POT-Creation-Date: 2019-09-14 11:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,96 +24,116 @@ msgstr ""
 msgid "Suvorov park web API"
 msgstr ""
 
-#: suvorov_park/apps.py:12 suvorov_park/common/models.py:10
+#: suvorov_park/apps.py:12 suvorov_park/common/models.py:11
 msgid "Site setting"
 msgstr "конфигурация сайта"
 
-#: suvorov_park/apps.py:16 suvorov_park/common/models.py:54
-#: suvorov_park/common/models.py:55
+#: suvorov_park/apps.py:17 suvorov_park/common/models.py:59
+#: suvorov_park/common/models.py:60
 msgid "News"
 msgstr "Новости"
 
-#: suvorov_park/apps.py:19 suvorov_park/services/apps.py:8
+#: suvorov_park/apps.py:22 suvorov_park/services/apps.py:8
 #: suvorov_park/services/models.py:11
 msgid "services"
 msgstr "Услуги ТСЖ"
 
-#: suvorov_park/apps.py:23 suvorov_park/forum/apps.py:8
+#: suvorov_park/apps.py:30 suvorov_park/forum/apps.py:8
 msgid "forum"
 msgstr "Форум"
 
-#: suvorov_park/apps.py:27
+#: suvorov_park/apps.py:38
 msgid "Голосвания"
 msgstr ""
 
-#: suvorov_park/apps.py:32 suvorov_park/users/apps.py:8
+#: suvorov_park/apps.py:46 suvorov_park/users/apps.py:8
 #: suvorov_park/users/models.py:20
 msgid "users"
 msgstr "Пользователи"
-
-#: suvorov_park/apps.py:37
-msgid "Административные права доступа"
-msgstr ""
 
 #: suvorov_park/common/apps.py:8
 msgid "common"
 msgstr "Общее"
 
-#: suvorov_park/common/models.py:7
+#: suvorov_park/common/models.py:8
 msgid "about"
 msgstr "О нас"
 
-#: suvorov_park/common/models.py:11
+#: suvorov_park/common/models.py:12
 #, fuzzy
 #| msgid "Site setting"
 msgid "Site settings"
 msgstr "Конфигурация сайта"
 
-#: suvorov_park/common/models.py:18
+#: suvorov_park/common/models.py:19
 msgid "setting"
 msgstr "Конфигурация сайта"
 
-#: suvorov_park/common/models.py:21
+#: suvorov_park/common/models.py:23
 msgid "image file"
 msgstr "изображение"
 
-#: suvorov_park/common/models.py:27
+#: suvorov_park/common/models.py:30
 msgid "setting image"
 msgstr "Картинка главной страницы"
 
-#: suvorov_park/common/models.py:28
+#: suvorov_park/common/models.py:31
 msgid "setting images"
 msgstr "Картинки главной страницы"
 
-#: suvorov_park/common/models.py:35
+#: suvorov_park/common/models.py:38
 msgid "settings"
 msgstr "Конфигурации сайта"
 
-#: suvorov_park/common/models.py:38
+#: suvorov_park/common/models.py:42
 msgid "video file"
 msgstr "видео файл"
 
-#: suvorov_park/common/models.py:41
+#: suvorov_park/common/models.py:46
 msgid "setting video"
 msgstr "Видео главной страницы"
 
-#: suvorov_park/common/models.py:42
+#: suvorov_park/common/models.py:47
 msgid "setting videos"
 msgstr "Видео главной страницы"
 
-#: suvorov_park/common/models.py:49 suvorov_park/forum/models.py:7
+#: suvorov_park/common/models.py:54 suvorov_park/forum/models.py:7
 #: suvorov_park/polls/models.py:10 suvorov_park/polls/models.py:28
 #: suvorov_park/services/models.py:7
 msgid "title"
 msgstr "Название"
 
-#: suvorov_park/common/models.py:50 suvorov_park/forum/models.py:28
+#: suvorov_park/common/models.py:55 suvorov_park/common/models.py:68
+#: suvorov_park/forum/models.py:28
 msgid "text"
 msgstr "Текст"
 
-#: suvorov_park/common/models.py:51
+#: suvorov_park/common/models.py:56
 msgid "date"
 msgstr "Дата публикации"
+
+#: suvorov_park/common/models.py:64
+msgid "name"
+msgstr "название"
+
+#: suvorov_park/common/models.py:65
+msgid "email"
+msgstr "адрес электронной почты"
+
+#: suvorov_park/common/models.py:67 suvorov_park/forum/models.py:30
+#: suvorov_park/polls/models.py:44 suvorov_park/services/models.py:22
+#: suvorov_park/users/models.py:19
+msgid "user"
+msgstr "Пользователь"
+
+#: suvorov_park/common/models.py:69 suvorov_park/forum/models.py:14
+#: suvorov_park/polls/models.py:11 suvorov_park/services/models.py:25
+msgid "created_at"
+msgstr "Дата создания"
+
+#: suvorov_park/common/models.py:72 suvorov_park/common/models.py:73
+msgid "Feedback"
+msgstr "Обратная связь"
 
 #: suvorov_park/forum/models.py:9
 msgid "number of comments"
@@ -122,11 +142,6 @@ msgstr "Количество сообщений"
 #: suvorov_park/forum/models.py:12
 msgid "number of members"
 msgstr "Количество участников"
-
-#: suvorov_park/forum/models.py:14 suvorov_park/polls/models.py:11
-#: suvorov_park/services/models.py:25
-msgid "created_at"
-msgstr "Дата создания"
 
 #: suvorov_park/forum/models.py:16
 msgid "author"
@@ -139,11 +154,6 @@ msgstr "Тема форума"
 #: suvorov_park/forum/models.py:21
 msgid "forum topics"
 msgstr "Темы форума"
-
-#: suvorov_park/forum/models.py:30 suvorov_park/polls/models.py:44
-#: suvorov_park/services/models.py:22 suvorov_park/users/models.py:19
-msgid "user"
-msgstr "Пользователь"
 
 #: suvorov_park/forum/models.py:40
 msgid "forum message"
@@ -162,15 +172,15 @@ msgid "owner"
 msgstr "Создатель"
 
 #: suvorov_park/polls/models.py:14 suvorov_park/polls/models.py:25
-#: suvorov_park/polls/models.py:47
+#: suvorov_park/polls/models.py:48
 msgid "poll"
 msgstr "Опрос"
 
-#: suvorov_park/polls/models.py:29 suvorov_park/polls/models.py:55
+#: suvorov_park/polls/models.py:29 suvorov_park/polls/models.py:61
 msgid "votes"
 msgstr "Голоса"
 
-#: suvorov_park/polls/models.py:32 suvorov_park/polls/models.py:50
+#: suvorov_park/polls/models.py:32 suvorov_park/polls/models.py:54
 msgid "choice"
 msgstr "Вариант ответа"
 
@@ -178,7 +188,7 @@ msgstr "Вариант ответа"
 msgid "choices"
 msgstr "Варианты ответа"
 
-#: suvorov_park/polls/models.py:54
+#: suvorov_park/polls/models.py:60
 msgid "vote"
 msgstr "Голос"
 
@@ -233,3 +243,8 @@ msgstr "Номер квартиры"
 #: suvorov_park/users/models.py:15
 msgid "apartment square"
 msgstr "Площадь квартиры"
+
+#, fuzzy
+#~| msgid "Feedback"
+#~ msgid "Feedback messages"
+#~ msgstr "Сообщения обратной связи"
