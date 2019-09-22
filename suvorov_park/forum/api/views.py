@@ -11,6 +11,7 @@ class ForumTopicsListCreateAPIView(ListCreateAPIView):
         models.ForumTopic.objects.all()
         .select_related("author")
         .prefetch_related("messages")
+        .order_by("-created_at")
     )
     serializer_class = serializers.ForumTopicSerializer
     permission_classes = (IsAuthenticated,)
