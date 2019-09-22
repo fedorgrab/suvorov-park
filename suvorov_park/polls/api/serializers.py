@@ -18,7 +18,7 @@ class PollSerializer(serializers.ModelSerializer):
     title = serializers.CharField(help_text="string")
     choices = ChoiceSerializer(many=True, help_text='[{"title": string}]')
     owner = serializers.CharField(read_only=True)
-    user_voted_for = serializers.IntegerField(read_only=True)
+    user_voted_for = serializers.CharField(read_only=True)
 
     class Meta:
         model = models.Poll
