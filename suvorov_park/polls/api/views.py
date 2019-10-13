@@ -15,9 +15,9 @@ class PollListCreateAPIView(ListCreateAPIView):
         user_votes = models.Vote.objects.filter(
             user=self.request.user, poll_id=OuterRef("id")
         )
-        return models.Poll.objects.annotate(
+        return models.Poll.objects.prefetch_related("choices").annotate(
             user_voted_for=Subquery(user_votes.values("choice__title")[:1])
-        ).order_by("-created_at")
+        ).order_by("-id")
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -33,10 +33,16 @@ class VoteAPIView(GenericAPIView):
         choice_id = self.kwargs[self.choice_id_url_kwarg]
         poll_id = self.kwargs[self.poll_id_url_kwarg]
 
-        serializer = self.get_serializer(data=request.data)
-        serializer.is_valid()
-        serializer.save(user=self.request.user, choice_id=choice_id, poll_id=poll_id)
+        vote_serializer = self.get_serializer(data=request.data)
+        vote_serializer.is_valid()
+        vote_serializer.save(user=self.request.user, choice_id=choice_id, poll_id=poll_id)
 
-        poll_instance = models.Poll.objects.get(id=poll_id)
+        user_votes = models.Vote.objects.filter(
+            user=self.request.user, poll_id=OuterRef("id")
+        )
+        poll_instance = models.Poll.objects.annotate(
+            user_voted_for=Subquery(user_votes.values("choice__title")[:1])
+        ).get(id=poll_id)
+
         poll_serializer = serializers.PollSerializer(poll_instance)
         return Response(poll_serializer.data)
