@@ -10,13 +10,6 @@ class ForumMessageSerializer(serializers.ModelSerializer):
         model = models.ForumMessage
         fields = ("text", "user")
 
-    def create(self, validated_data):
-        return models.ForumMessage.objects.create(
-            user=validated_data["user"],
-            text=validated_data["text"],
-            forum_topic_id=validated_data["forum_topic_id"],
-        )
-
 
 class ForumTopicSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
