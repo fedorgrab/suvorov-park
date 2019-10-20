@@ -4,7 +4,7 @@ psycopg2-binary==2.8.3
 djangorestframework==3.10.2
 Pillow==6.1.0
 coreapi==2.3.3
-https://github.com/darklow/django-suit/tarball/v2
+-e git://github.com/darklow/django-suit.git@v2#egg=django-suit
 
 
 

@@ -45,4 +45,9 @@ class SuvorovParkConfig(DjangoSuitConfig):
         ParentItem(
             _("users"), children=[ChildItem(model="users.user")], icon="fa fa-users"
         ),
+        ParentItem(
+            _("Feedback"),
+            children=[ChildItem(model="common.feedback")],
+            icon="fa fa-bars",
+        ),
     )

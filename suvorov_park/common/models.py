@@ -61,6 +61,10 @@ class News(models.Model):
 
 
 class Feedback(models.Model):
+    PROCESSED = "processed"
+    IN_PROGRESS = "in progress"
+    MODERATION_STATUSES = ((PROCESSED, _("processed")), (IN_PROGRESS, _("in progress")))
+
     name = models.CharField(verbose_name=_("name"), max_length=255)
     email = models.EmailField(
         verbose_name=_("email"), max_length=255, null=True, blank=True
@@ -74,6 +78,12 @@ class Feedback(models.Model):
     )
     text = models.CharField(max_length=1020, verbose_name=_("text"))
     created_at = models.DateField(verbose_name=_("created_at"), auto_now_add=True)
+    status = models.CharField(
+        max_length=127,
+        verbose_name=_("status"),
+        choices=MODERATION_STATUSES,
+        default=IN_PROGRESS,
+    )
 
     class Meta:
         verbose_name = _("Feedback")

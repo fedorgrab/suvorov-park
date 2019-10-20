@@ -11,12 +11,12 @@ class NewsAdmin(admin.ModelAdmin):
     search_fields = ("title", "text")
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(admin.StackedInline):
     model = models.SettingImage
     extra = 0
 
 
-class VideoInline(admin.TabularInline):
+class VideoInline(admin.StackedInline):
     model = models.SettingVideo
     extra = 0
 
@@ -29,4 +29,11 @@ class SettingAdmin(SingletonModelAdmin):
 @admin.register(models.Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
     list_select_related = ("user",)
-    list_display = ("user", "email", "name", "created_at")
+    list_display = ("user", "email", "name", "status", "created_at")
+    list_editable = ("status",)
+    ordering = ("-created_at",)
+
+    def suit_row_attributes(self, obj, request):
+        css_class = {"processed": "success", "in progress": "warning"}.get(obj.status)
+
+        return {"class": css_class, "data": obj.name}

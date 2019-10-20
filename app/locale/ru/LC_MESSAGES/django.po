@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-14 11:09+0300\n"
+"POT-Creation-Date: 2019-10-20 15:08+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -50,6 +50,11 @@ msgstr ""
 #: suvorov_park/users/models.py:20
 msgid "users"
 msgstr "Пользователи"
+
+#: suvorov_park/apps.py:49 suvorov_park/common/models.py:92
+#: suvorov_park/common/models.py:93
+msgid "Feedback"
+msgstr "Обратная связь"
 
 #: suvorov_park/common/apps.py:8
 msgid "common"
@@ -103,7 +108,7 @@ msgstr "Видео главной страницы"
 msgid "title"
 msgstr "Название"
 
-#: suvorov_park/common/models.py:55 suvorov_park/common/models.py:68
+#: suvorov_park/common/models.py:55 suvorov_park/common/models.py:82
 #: suvorov_park/forum/models.py:28
 msgid "text"
 msgstr "Текст"
@@ -112,28 +117,36 @@ msgstr "Текст"
 msgid "date"
 msgstr "Дата публикации"
 
-#: suvorov_park/common/models.py:64
+#: suvorov_park/common/models.py:67
+msgid "processed"
+msgstr "обработан"
+
+#: suvorov_park/common/models.py:68
+msgid "in progress"
+msgstr "на рассмотрении"
+
+#: suvorov_park/common/models.py:71
 msgid "name"
 msgstr "название"
 
-#: suvorov_park/common/models.py:65
+#: suvorov_park/common/models.py:73
 msgid "email"
 msgstr "адрес электронной почты"
 
-#: suvorov_park/common/models.py:67 suvorov_park/forum/models.py:30
+#: suvorov_park/common/models.py:78 suvorov_park/forum/models.py:30
 #: suvorov_park/polls/models.py:44 suvorov_park/services/models.py:22
 #: suvorov_park/users/models.py:19
 msgid "user"
 msgstr "Пользователь"
 
-#: suvorov_park/common/models.py:69 suvorov_park/forum/models.py:14
+#: suvorov_park/common/models.py:83 suvorov_park/forum/models.py:14
 #: suvorov_park/polls/models.py:11 suvorov_park/services/models.py:25
 msgid "created_at"
 msgstr "Дата создания"
 
-#: suvorov_park/common/models.py:72 suvorov_park/common/models.py:73
-msgid "Feedback"
-msgstr "Обратная связь"
+#: suvorov_park/common/models.py:86
+msgid "status"
+msgstr "статус"
 
 #: suvorov_park/forum/models.py:9
 msgid "number of comments"
