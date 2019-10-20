@@ -16,12 +16,7 @@ def validate_password(value):
 
 class AuthSerializer(serializers.ModelSerializer):
     username = serializers.CharField()
-    password = serializers.CharField(
-        required=True,
-        min_length=8,
-        validators=[validate_password],
-        style={"input_type": "password"},
-    )
+    password = serializers.CharField(required=True, style={"input_type": "password"})
 
     class Meta:
         model = User

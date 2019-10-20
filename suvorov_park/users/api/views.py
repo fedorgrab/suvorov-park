@@ -19,16 +19,17 @@ class SignInAPIView(GenericAPIView):
             raise ValidationError({"message": "Invalid credendials"})
 
         login(request=request, user=user)
+        return user
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        self.login(request=request, **serializer.validated_data)
-        response = Response({"message": "success"})
-        # response["Access-Control-Allow-Headers"] = "Content-Type, Access-Control-Allow-Headers, " \
-        #                                            "Authorization, X-Requested-With, Access-Control-Expose-Headers"
-        # response["Access-Control-Expose-Headers"] = "Set-Cookie, Access-Control-Expose-Headers, Access-Control-Allow-Headers"
-        return response
+        user = self.login(request=request, **serializer.validated_data)
+
+        if user.is_staff:
+            return Response({"user": "admin"})
+
+        return Response({"user": "resident"})
 
 
 class SignUpAPIView(GenericAPIView):
@@ -40,7 +41,7 @@ class SignUpAPIView(GenericAPIView):
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
         login(request=request, user=user)
-        return Response(data={})
+        return Response(data={"message": "success"})
 
 
 class SignOutAPIView(APIView):
@@ -48,4 +49,4 @@ class SignOutAPIView(APIView):
 
     def post(self, request, *args, **kwargs):
         logout(request)
-        return Response({"message": "success"})
+        return Response(data={"message": "success"})

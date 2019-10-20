@@ -88,7 +88,7 @@ USE_TZ = True
 
 STATIC_ROOT = CONFIG.PATHS["STATIC_DIR"]
 
-STATIC_URL = "/static/"
+STATIC_URL = "/django-static/"
 
 MEDIA_ROOT = CONFIG.PATHS["DATA_DIR"]
 
@@ -157,10 +157,7 @@ LOGGING = {
             "level": "ERROR",
             "propagate": True,
         },
-        "django.db.backends": {
-            'level': 'DEBUG',
-            'handlers': ['console'],
-        }
+        "django.db.backends": {"level": "DEBUG", "handlers": ["console"]},
     },
 }
 
