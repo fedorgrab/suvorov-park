@@ -12,18 +12,19 @@ class ForumMessageSerializer(serializers.ModelSerializer):
 
 
 class ForumTopicSerializer(serializers.ModelSerializer):
-    author = serializers.StringRelatedField(read_only=True)
+    user = serializers.StringRelatedField(read_only=True, source="author")
     number_of_messages = serializers.IntegerField(read_only=True)
     number_of_members = serializers.IntegerField(read_only=True)
     messages = ForumMessageSerializer(many=True, read_only=True)
 
     class Meta:
         model = models.ForumTopic
-        fields = "__all__"
-
-    def create(self, validated_data):
-        return models.ForumTopic.objects.create(
-            title=validated_data["title"], author=validated_data["user"]
+        fields = (
+            "title",
+            "user",
+            "number_of_messages",
+            "number_of_members",
+            "messages",
         )
 
 
