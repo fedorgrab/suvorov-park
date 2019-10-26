@@ -37,7 +37,7 @@ class ImageSettingSerializer(serializers.ModelSerializer):
 
 
 class VideoSettingSerializer(serializers.ModelSerializer):
-    url = serializers.URLField(source="vide_file.url")
+    url = serializers.URLField(source="video_file.url")
 
     class Meta:
         model = models.SettingVideo
