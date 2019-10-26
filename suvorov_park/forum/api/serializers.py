@@ -20,6 +20,7 @@ class ForumTopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = models.ForumTopic
         fields = (
+            "id",
             "title",
             "user",
             "number_of_messages",
