@@ -15,9 +15,11 @@ class PollListCreateAPIView(ListCreateAPIView):
         user_votes = models.Vote.objects.filter(
             user=self.request.user, poll_id=OuterRef("id")
         )
-        return models.Poll.objects.prefetch_related("choices").annotate(
-            user_voted_for=Subquery(user_votes.values("choice__title")[:1])
-        ).order_by("-id")
+        return (
+            models.Poll.objects.prefetch_related("choices")
+            .annotate(user_voted_for=Subquery(user_votes.values("choice__title")[:1]))
+            .order_by("-id")
+        )
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
@@ -35,7 +37,9 @@ class VoteAPIView(GenericAPIView):
 
         vote_serializer = self.get_serializer(data=request.data)
         vote_serializer.is_valid()
-        vote_serializer.save(user=self.request.user, choice_id=choice_id, poll_id=poll_id)
+        vote_serializer.save(
+            user=self.request.user, choice_id=choice_id, poll_id=poll_id
+        )
 
         user_votes = models.Vote.objects.filter(
             user=self.request.user, poll_id=OuterRef("id")

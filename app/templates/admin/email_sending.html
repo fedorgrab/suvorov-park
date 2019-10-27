@@ -1,0 +1,34 @@
+{% extends "admin/base.html" %}
+{% load static from staticfiles %}
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static "css/admin/email_sending.css" %}"/>
+{% endblock %}
+
+
+{% block content %}
+    <p class="congrats_p">Поздравляем! Вы создали новость на сайте ТСЖ Суворов Парк</p>
+    <p class="second_p">
+        Остался один небольшой, но очень важный шаг: нужно выбрать пользователей
+        для почтовой рассылки.
+    </p>
+    <p class="second_p">
+        Вам необходимо выбрать нужных пользователей для отправки в окне ниже или поставьте галочку
+        "Отправить всем"
+    </p>
+    <form class="send_email_form" action="{% url 'admin:common_news_send_emails' %}" method="POST">
+        {% csrf_token %}
+        <div class="select_users">
+            <label for="users">Выбор пользователей:</label>
+            {{ form.users }}
+            <div>{{ form.send_to_all }}<label for="send_to_all"> Отправить всем</label></div>
+        </div>
+
+        <p class="hint_p">
+            Подсказка: Можно поставить галочку "Отправить всем" и выбрать из списка пользователей,
+            чтоб отправить рассылку всем, кроме выбранных.
+        </p>
+
+        <input class="apply" type="submit" name="apply" value="Отправить Рассылку">
+    </form>
+{% endblock %}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+{% load static from staticfiles %}
+<head>
+    <title>News Letter</title>
+    <link
+            href="https://fonts.googleapis.com/css?family=EB+Garamond:400,700&display=swap&subset=cyrillic,cyrillic-ext"
+            rel="stylesheet"
+    />
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'EB Garamond', serif;
+        }
+
+        body {
+            margin: 0;
+            background-image: url("{{ base_url }}{% static "emails/newsletter-background.svg" %}");
+        }
+
+        #footer {
+            background: black;
+            color: #EAA81B;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        #main-text-container {
+            background: white;
+            min-height: 70vh;
+            margin: 200px 50px 0 50px;
+            padding: 100px;
+            border-radius: 7px 7px 0 0;
+            position: relative;
+        }
+
+        #main-text-container::before {
+            position: absolute;
+            content: url("{{ base_url }}{% static "emails/logo.svg" %}");
+            top: -150px;
+            left: 50px;
+            color: white;
+        }
+
+        #website-button {
+            background: #EAA81B;
+            color: black;
+            border: none;
+            height: 40px;
+            border-radius: 7px;
+            margin: 20px 40%;
+            width: 150px;
+        }
+
+        @media (max-width: 768px) {
+            #main-text-container {
+                margin: 150px 30px 0 30px;
+                padding: 50px;
+            }
+
+            #website-button {
+                margin: 20px 0;
+            }
+
+            #main-text-container::before {
+                position: absolute;
+                content: url("{{ base_url }}{% static "emails/logo.svg" %}");
+                top: -120px;
+                left: 50px;
+                color: white;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<div id="main-text-container">
+    <p>Здравствуйте, {{ user.first_name }} {{ user.patronymic }}</p>
+    <p> В новостной ленте ТСЖ "Суворов Парк" было добавлено новое объявление</p>
+    <h3> {{ obj.title }}</h3>
+    <p> {{ obj.text }}</p>
+    <p id="text-footer">С уважением,<br/>Администрация ТСЖ “Суворов Парк”</p>
+    <button id="website-button">Перейти на сайт</button>
+</div>
+<div id="footer">
+    <p id="address">
+        Улица Малая Филевская, дом 40, корпус 1, этаж 23, пом 1, 121433, город
+        Москва
+    </p>
+    <p id="note">Чтобы отписаться от рассылки, свяжитесь с администрацией.</p>
+</div>
+</body>
+</html>

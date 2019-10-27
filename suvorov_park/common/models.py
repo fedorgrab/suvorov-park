@@ -59,6 +59,9 @@ class News(models.Model):
         verbose_name = _("News")
         verbose_name_plural = _("News")
 
+    def __str__(self):
+        return self.title
+
 
 class Feedback(models.Model):
     PROCESSED = "processed"
