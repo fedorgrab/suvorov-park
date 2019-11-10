@@ -15,7 +15,7 @@
 
         body {
             margin: 0;
-            background-image: url("{{ base_url }}{% static "emails/newsletter-background.svg" %}");
+            background: #EAA81B;
         }
 
         #footer {
@@ -26,9 +26,9 @@
         }
 
         #main-text-container {
-            background: white;
             min-height: 70vh;
             margin: 200px 50px 0 50px;
+            background: white;
             padding: 100px;
             border-radius: 7px 7px 0 0;
             position: relative;
@@ -36,8 +36,6 @@
 
         #main-text-container::before {
             position: absolute;
-            content: url("{{ base_url }}{% static "emails/logo.svg" %}");
-            top: -150px;
             left: 50px;
             color: white;
         }
@@ -70,24 +68,25 @@
                 color: white;
             }
         }
-
     </style>
 </head>
 <body>
-<div id="main-text-container">
-    <p>Здравствуйте, {{ user.first_name }} {{ user.patronymic }}</p>
-    <p> В новостной ленте ТСЖ "Суворов Парк" было добавлено новое объявление</p>
-    <h3> {{ obj.title }}</h3>
-    <p> {{ obj.text }}</p>
-    <p id="text-footer">С уважением,<br/>Администрация ТСЖ “Суворов Парк”</p>
-    <button id="website-button">Перейти на сайт</button>
-</div>
-<div id="footer">
-    <p id="address">
-        Улица Малая Филевская, дом 40, корпус 1, этаж 23, пом 1, 121433, город
-        Москва
-    </p>
-    <p id="note">Чтобы отписаться от рассылки, свяжитесь с администрацией.</p>
+<div id="email-container">
+    <div id="main-text-container">
+        <p>Здравствуйте, {{ user.first_name }} {{ user.patronymic }}</p>
+        <p> В новостной ленте ТСЖ "Суворов Парк" было добавлено новое объявление</p>
+        <h3> {{ obj.title }}</h3>
+        <p> {{ obj.text }}</p>
+        <p id="text-footer">С уважением,<br/>Администрация ТСЖ “Суворов Парк”</p>
+        <button id="website-button">Перейти на сайт</button>
+    </div>
+    <div id="footer">
+        <p id="address">
+            Улица Малая Филевская, дом 40, корпус 1, этаж 23, пом 1, 121433, город
+            Москва
+        </p>
+        <p id="note">Чтобы отписаться от рассылки, свяжитесь с администрацией.</p>
+    </div>
 </div>
 </body>
 </html>

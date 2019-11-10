@@ -33,9 +33,18 @@
 
 .apply {
     color: white;
-    background-color: #317bbf;
+    background-color: #1376bf;
     height: 40px;
-    width: 170px;
+    width: 220px;
+    margin: 4px;
+    border-radius: 3px;
+}
+
+.go-back {
+    color: #111111;
+    background-color: #eeece6;
+    height: 40px;
+    width: 220px;
     margin: 4px;
     border-radius: 3px;
 }
