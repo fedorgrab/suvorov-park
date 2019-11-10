@@ -8,7 +8,7 @@ from suvorov_park.common.api import serializers
 
 class NewsListAPIView(ListAPIView):
     serializer_class = serializers.NewsSerializer
-    queryset = models.News.objects.all()
+    queryset = models.News.objects.all().order_by("-id")
     permission_classes = (IsAuthenticated,)
 
 
