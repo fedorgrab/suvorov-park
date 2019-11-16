@@ -40,8 +40,7 @@
             color: white;
         }
 
-        #website-button {
-            background: #EAA81B;
+        .website-button {
             color: black;
             border: none;
             height: 40px;
@@ -56,7 +55,7 @@
                 padding: 50px;
             }
 
-            #website-button {
+            .website-button {
                 margin: 20px 0;
             }
 
@@ -78,7 +77,7 @@
         <h3> {{ obj.title }}</h3>
         <p> {{ obj.text }}</p>
         <p id="text-footer">С уважением,<br/>Администрация ТСЖ “Суворов Парк”</p>
-        <button id="website-button">Перейти на сайт</button>
+        <a href="{{ base_url }}" class="website-button">Перейти на сайт</a>
     </div>
     <div id="footer">
         <p id="address">

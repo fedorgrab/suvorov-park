@@ -51,7 +51,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = "app.urls"
 
 WSGI_APPLICATION = "app.wsgi.application"
-BASE_URL = "http://92.53.67.152"
+BASE_URL = "http://suvorovpark.ru"
 
 #########################
 # Database
@@ -184,6 +184,6 @@ EMAIL_HOST_USER = CONFIG.env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = CONFIG.env("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = CONFIG.env("DEFAULT_FROM_EMAIL")
 EMAIL_PORT = CONFIG.env("EMAIL_PORT")
-EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
