@@ -1,0 +1,2 @@
+class IncorrectResetEmail(Exception):
+    pass

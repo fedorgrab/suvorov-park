@@ -1,6 +1,12 @@
+import random
+
+from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+
+from .exceptions import IncorrectResetEmail
 
 
 class User(AbstractUser):
@@ -18,3 +24,36 @@ class User(AbstractUser):
     class Meta:
         verbose_name = _("user")
         verbose_name_plural = _("users")
+
+
+def generate_password_reset_code():
+    return random.randint(100_000_000, 999_999_999)
+
+
+UserModel = get_user_model()
+
+
+class PasswordResetCodeManager(models.Manager):
+    def create(self, email):
+        try:
+            user = UserModel.objects.get(email=email)
+        except UserModel.DoesNotExist:
+            raise IncorrectResetEmail
+        else:
+            return super().create(user=user)
+
+
+class PasswordResetCode(models.Model):
+    user = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL, verbose_name=_("user"), on_delete=models.CASCADE
+    )
+    code = models.PositiveIntegerField(
+        verbose_name=_("code"), unique=True, default=generate_password_reset_code
+    )
+    created_at = models.DateTimeField(verbose_name=_("created_at"), auto_now_add=True)
+
+    objects = PasswordResetCodeManager()
+
+    class Meta:
+        verbose_name = _("password reset code")
+        verbose_name_plural = _("password reset codes")
