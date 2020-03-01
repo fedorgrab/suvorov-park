@@ -113,6 +113,7 @@ class PasswordResetConfirmAPIView(GenericAPIView):
 
 class UserProfileAPIView(RetrieveAPIView):
     serializer_class = serializers.UserSerializer
+    permission_classes = (IsAuthenticated,)
 
     def get_object(self):
         return self.request.user
