@@ -59,3 +59,9 @@ class PasswordResetConfirmSerializer(serializers.Serializer):
         style={"input_type": "password"},
         help_text="Password should be typed twice and validated on frontend",
     )
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "patronymic", "apartment_number")

@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.utils.translation import gettext_lazy as _
 from rest_framework.exceptions import ValidationError
-from rest_framework.generics import CreateAPIView, GenericAPIView
+from rest_framework.generics import CreateAPIView, GenericAPIView, RetrieveAPIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -109,3 +109,10 @@ class PasswordResetConfirmAPIView(GenericAPIView):
         user.set_password(raw_password=serializer.validated_data["new_password"])
         user.save()
         return Response(data={"detail": "Success"})
+
+
+class UserProfileAPIView(RetrieveAPIView):
+    serializer_class = serializers.UserSerializer
+
+    def get_object(self):
+        return self.request.user

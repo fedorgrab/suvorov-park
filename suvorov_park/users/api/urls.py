@@ -6,6 +6,7 @@ app_name = "users"
 
 # fmt: off
 urlpatterns = [
+    path("current", views.UserProfileAPIView.as_view(), name="user"),
     path("sign-in", views.SignInAPIView.as_view(), name="sign-in"),
     path("sign-up", views.SignUpAPIView.as_view(), name="sign-up"),
     path("sign-out", views.SignOutAPIView.as_view(), name="sign-out"),
