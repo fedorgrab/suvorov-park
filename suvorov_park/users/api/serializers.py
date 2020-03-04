@@ -54,7 +54,9 @@ class PasswordResetRequestSerializer(serializers.ModelSerializer):
 
 
 class PasswordResetConfirmSerializer(serializers.Serializer):
-    code = serializers.IntegerField(help_text="Code that user received via email")
+    token = serializers.CharField(
+        help_text="Token that was in the parameter in email link"
+    )
     new_password = serializers.CharField(
         style={"input_type": "password"},
         help_text="Password should be typed twice and validated on frontend",

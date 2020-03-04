@@ -1,4 +1,4 @@
-import random
+import secrets
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
@@ -26,8 +26,8 @@ class User(AbstractUser):
         verbose_name_plural = _("users")
 
 
-def generate_password_reset_code():
-    return random.randint(100_000_000, 999_999_999)
+def generate_password_reset_token():
+    return secrets.token_hex()
 
 
 UserModel = get_user_model()
@@ -47,8 +47,11 @@ class PasswordResetCode(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, verbose_name=_("user"), on_delete=models.CASCADE
     )
-    code = models.PositiveIntegerField(
-        verbose_name=_("code"), unique=True, default=generate_password_reset_code
+    token = models.CharField(
+        verbose_name=_("token"),
+        unique=True,
+        default=generate_password_reset_token,
+        max_length=127,
     )
     created_at = models.DateTimeField(verbose_name=_("created_at"), auto_now_add=True)
 

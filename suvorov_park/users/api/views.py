@@ -99,10 +99,10 @@ class PasswordResetConfirmAPIView(GenericAPIView):
         try:
             password_reset_request = models.PasswordResetCode.objects.select_related(
                 "user"
-            ).get(code=serializer.validated_data["code"])
+            ).get(token=serializer.validated_data["token"])
         except models.PasswordResetCode.DoesNotExist:
             raise ValidationError(
-                {"code": [_("Incorrect code: try again or request a new one")]}
+                {"token": [_("Incorrect token: try again or request a new one")]}
             )
 
         user = password_reset_request.user
