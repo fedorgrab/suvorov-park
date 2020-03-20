@@ -27,6 +27,10 @@ SUCCESS_MESSAGE_OPT_2_WARNING = _(
     "так как не у всех заполнен email в личном кабинете. Обратитесь к пользователю для "
     "заполнения его электронной почты."
 )
+SUCCESS_FEEDBACK_EMAIL_ANSWER = _(
+    "Поздравляем! Вы ответили на одну заявку обратной свзязи! <br>"
+    'Не волнуйтесь, теперь эта заявка будет в нижней части списка и помечена маркером "обработан"'
+)
 
 NEWS_OBJECT = None
 
@@ -52,6 +56,7 @@ class NewsAdmin(admin.ModelAdmin):
 
     def response_post_save_add(self, request, obj):
         form = forms.SendEmailToUsersForm(request.POST)
+
         if form.is_valid():
             global NEWS_OBJECT
             NEWS_OBJECT = obj
@@ -127,11 +132,81 @@ class SettingAdmin(SingletonModelAdmin):
 @admin.register(models.Feedback)
 class FeedbackAdmin(admin.ModelAdmin):
     list_select_related = ("user",)
-    list_display = ("user", "email", "name", "status", "created_at")
+    list_display = (
+        "user",
+        "name",
+        "text",
+        "status",
+        "created_at",
+        "send_feedback_answer_email_button",
+    )
+    readonly_fields = ("user", "email", "name", "created_at", "text")
     list_editable = ("status",)
-    ordering = ("-created_at",)
+    ordering = ("status", "-created_at")
+    button_style = (
+        "background: #4b505f; border-radius: 3px; color: white; padding: 5px 15px"
+    )
 
     def suit_row_attributes(self, obj, request):
         css_class = {"processed": "success", "in progress": "warning"}.get(obj.status)
 
         return {"class": css_class, "data": obj.name}
+
+    def get_urls(self):
+        # fmt: off
+        return [path(
+            "<int:feedback_id>/send-email",
+            self.admin_site.admin_view(self.send_email),
+            name="send_feedback_answer_email"
+        )] + super().get_urls()
+        # fmt: on
+
+    def send_feedback_answer_email_button(self, obj):
+        return mark_safe(
+            "<a style='{}' href='{}'>Ответить</a>".format(
+                self.button_style,
+                reverse("admin:send_feedback_answer_email", args=[obj.pk]),
+            )
+        )
+
+    send_feedback_answer_email_button.short_description = _("Answer")
+
+    def send_email(self, request, feedback_id):
+        form = forms.AnswerFeedbackEmailForm(request.POST)
+        form.is_valid()
+        feedback = models.Feedback.objects.select_related("user").get(id=feedback_id)
+
+        if "apply" in request.POST:
+            text = form.cleaned_data["text"]
+            setattr(feedback, "answer_text", text)
+
+            if feedback.email:
+                send_mailing(
+                    email_addresses=[feedback.email],
+                    subject=_("Feedback"),
+                    mail_template="emails/feedback_answer.html",
+                    mail_object=feedback,
+                )
+            else:
+                send_mailing(
+                    users=[feedback.user],
+                    subject=_("Feedback"),
+                    mail_template="emails/feedback_answer.html",
+                    mail_object=feedback,
+                )
+
+            feedback.status = models.Feedback.PROCESSED
+            feedback.save()
+
+            self.message_user(
+                request=request,
+                message=mark_safe(SUCCESS_FEEDBACK_EMAIL_ANSWER),
+                level=messages.SUCCESS,
+            )
+            return HttpResponseRedirect(reverse("admin:common_feedback_changelist"))
+
+        return render(
+            request,
+            "admin/feedback_answer_email.html",
+            context={"form": form, "obj": feedback, **admin.site.each_context(request)},
+        )

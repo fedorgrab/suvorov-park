@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-10-20 15:08+0300\n"
+"POT-Creation-Date: 2020-03-20 20:51+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,8 +28,8 @@ msgstr ""
 msgid "Site setting"
 msgstr "конфигурация сайта"
 
-#: suvorov_park/apps.py:17 suvorov_park/common/models.py:59
-#: suvorov_park/common/models.py:60
+#: suvorov_park/apps.py:17 suvorov_park/common/admin.py:86
+#: suvorov_park/common/models.py:59 suvorov_park/common/models.py:60
 msgid "News"
 msgstr "Новости"
 
@@ -47,14 +47,47 @@ msgid "Голосвания"
 msgstr ""
 
 #: suvorov_park/apps.py:46 suvorov_park/users/apps.py:8
-#: suvorov_park/users/models.py:20
+#: suvorov_park/users/models.py:26
 msgid "users"
 msgstr "Пользователи"
 
-#: suvorov_park/apps.py:49 suvorov_park/common/models.py:92
-#: suvorov_park/common/models.py:93
+#: suvorov_park/apps.py:49 suvorov_park/common/admin.py:186
+#: suvorov_park/common/admin.py:193 suvorov_park/common/models.py:93
+#: suvorov_park/common/models.py:94
 msgid "Feedback"
 msgstr "Обратная связь"
+
+#: suvorov_park/common/admin.py:17
+#, python-brace-format
+msgid ""
+"Поздравляем! Только что вы добавили новую новость на сайт ТСЖ Суворов-Парк."
+"<br> Оповещение о новости получат {0} пользователей."
+msgstr ""
+
+#: suvorov_park/common/admin.py:21
+#, python-brace-format
+msgid ""
+"Поздравляем! Только что вы добавили новую новость на сайт ТСЖ Суворов-Парк."
+"<br> Оповещение о новости получат {0} из выбранных вами {1} пользователей. "
+msgstr ""
+
+#: suvorov_park/common/admin.py:26
+msgid ""
+"Примечание: не все выбранные пользователи получат рассылку, так как не у "
+"всех заполнен email в личном кабинете. Обратитесь к пользователю для "
+"заполнения его электронной почты."
+msgstr ""
+
+#: suvorov_park/common/admin.py:31
+msgid ""
+"Поздравляем! Вы ответили на одну заявку обратной свзязи! <br>Не волнуйтесь, "
+"теперь эта заявка будет в нижней части списка и помечена маркером \"обработан"
+"\""
+msgstr ""
+
+#: suvorov_park/common/admin.py:172
+msgid "Answer"
+msgstr "Ответить"
 
 #: suvorov_park/common/apps.py:8
 msgid "common"
@@ -108,7 +141,7 @@ msgstr "Видео главной страницы"
 msgid "title"
 msgstr "Название"
 
-#: suvorov_park/common/models.py:55 suvorov_park/common/models.py:82
+#: suvorov_park/common/models.py:55 suvorov_park/common/models.py:83
 #: suvorov_park/forum/models.py:28
 msgid "text"
 msgstr "Текст"
@@ -117,11 +150,11 @@ msgstr "Текст"
 msgid "date"
 msgstr "Дата публикации"
 
-#: suvorov_park/common/models.py:67
+#: suvorov_park/common/models.py:69
 msgid "processed"
 msgstr "обработан"
 
-#: suvorov_park/common/models.py:68
+#: suvorov_park/common/models.py:69
 msgid "in progress"
 msgstr "на рассмотрении"
 
@@ -135,16 +168,17 @@ msgstr "адрес электронной почты"
 
 #: suvorov_park/common/models.py:78 suvorov_park/forum/models.py:30
 #: suvorov_park/polls/models.py:44 suvorov_park/services/models.py:22
-#: suvorov_park/users/models.py:19
+#: suvorov_park/users/models.py:25 suvorov_park/users/models.py:48
 msgid "user"
 msgstr "Пользователь"
 
-#: suvorov_park/common/models.py:83 suvorov_park/forum/models.py:14
+#: suvorov_park/common/models.py:84 suvorov_park/forum/models.py:14
 #: suvorov_park/polls/models.py:11 suvorov_park/services/models.py:25
+#: suvorov_park/users/models.py:56
 msgid "created_at"
 msgstr "Дата создания"
 
-#: suvorov_park/common/models.py:86
+#: suvorov_park/common/models.py:87
 msgid "status"
 msgstr "статус"
 
@@ -237,25 +271,51 @@ msgstr "Разрешения"
 msgid "Important dates"
 msgstr "Важные даты"
 
-#: suvorov_park/users/api/serializers.py:12
+#: suvorov_park/users/api/serializers.py:15
 msgid "Invalid password: it should have numeric symbols"
 msgstr "Невалидный пароль: он должен включать цифры"
 
-#: suvorov_park/users/models.py:8
+#: suvorov_park/users/api/views.py:83
+msgid ""
+"Password restore procedure requested successfully: Check your email to "
+"receive the code and continue the next steps"
+msgstr ""
+
+#: suvorov_park/users/api/views.py:105
+msgid "Incorrect token: try again or request a new one"
+msgstr ""
+
+#: suvorov_park/users/models.py:14
 msgid "patronymic"
 msgstr "Отчество"
 
-#: suvorov_park/users/models.py:10
+#: suvorov_park/users/models.py:16
 msgid "avatar"
 msgstr "Аватар"
 
-#: suvorov_park/users/models.py:12
+#: suvorov_park/users/models.py:18
 msgid "apartment number"
 msgstr "Номер квартиры"
 
-#: suvorov_park/users/models.py:15
+#: suvorov_park/users/models.py:21
 msgid "apartment square"
 msgstr "Площадь квартиры"
+
+#: suvorov_park/users/models.py:51
+msgid "token"
+msgstr ""
+
+#: suvorov_park/users/models.py:61
+msgid "password reset code"
+msgstr ""
+
+#: suvorov_park/users/models.py:62
+msgid "password reset codes"
+msgstr ""
+
+#: suvorov_park/users/password_reset_email.py:13
+msgid "Password reset code"
+msgstr ""
 
 #, fuzzy
 #~| msgid "Feedback"

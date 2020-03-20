@@ -1,0 +1,62 @@
+{% extends "admin/base.html" %}
+{% load static from staticfiles %}
+{% block extrastyle %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css"
+          href="{% static "css/admin/feedback_answer_email.css" %}"/>
+{% endblock %}
+
+
+{% block content %}
+    <div class="main-label-container">
+        <h2 class="main-label">Ответ пользователю на заявку обратной связи</h2>
+    </div>
+    <br>
+    <div class="feedback-outer-block">
+        <div class="feedback-block">
+            <div>
+                <p>{{ obj.text }}</p>
+            </div>
+            <div class="tenant-name">
+                <p>
+                    <i>
+                        Сообщение от жителя
+                        {{ obj.user.first_name }}
+                        {{ obj.user.patronymic }}
+                        ({{ obj.user.username }})
+                    </i>
+                </p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <form
+            action="{% url 'admin:send_feedback_answer_email' feedback_id=obj.id %}"
+            method="POST"
+    >
+        <div class="feedback-answer-outer-block">
+            <div class="feedback-answer-block">
+
+                <div class="appeal-block">
+                    <p>
+                        <i>
+                            Уважаемый, {{ obj.user.first_name }} {{ obj.user.patronymic }}, доброго
+                            времени суток!
+                        </i>
+                    </p>
+                </div>
+                {% csrf_token %}
+                <label for="text"></label>
+                {{ form.text }}
+                <div class="with-regards-block">
+                    <p>
+                        <i>
+                            С уважением, Администрация ТСЖ "Суворов Парк"
+                        </i>
+                    </p>
+                </div>
+            </div>
+            <input class="apply" type="submit" name="apply" value="Ответить">
+        </div>
+    </form>
+{% endblock %}

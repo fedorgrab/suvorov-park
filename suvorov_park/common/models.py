@@ -79,7 +79,8 @@ class Feedback(models.Model):
         null=True,
         blank=True,
     )
-    text = models.CharField(max_length=1020, verbose_name=_("text"))
+    # text = models.CharField(max_length=1020, verbose_name=_("text"))
+    text = models.TextField(verbose_name=_("text"))
     created_at = models.DateField(verbose_name=_("created_at"), auto_now_add=True)
     status = models.CharField(
         max_length=127,
