@@ -24,7 +24,6 @@ APP_DIR = environ.Path(__file__) - 2
 DATA_DIR = APP_DIR.path("..", "..", "data")
 CONFIG_DIR = APP_DIR.path("..", "..", "conf")
 env.read_env(str(APP_DIR.path(".env")))
-
 parser = ConfigParser()
 
 PATHS["APP_DIR"] = str(APP_DIR)

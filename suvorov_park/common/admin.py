@@ -144,7 +144,7 @@ class FeedbackAdmin(admin.ModelAdmin):
     list_editable = ("status",)
     ordering = ("status", "-created_at")
     button_style = (
-        "background: #4b505f; border-radius: 3px; color: white; padding: 5px 15px"
+        "background: #eaa81b; border-radius: 3px; color: white; padding: 5px 15px"
     )
 
     def suit_row_attributes(self, obj, request):
